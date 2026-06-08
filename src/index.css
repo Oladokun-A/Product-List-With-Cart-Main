@@ -404,3 +404,41 @@ body {
 .quantity-button:hover {
     background-color: hsl(14, 86%, 42%);
 }
+.instructions {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: hsl(15, 14%, 89%);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.356);
+}
+.instructions-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.instructions-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.instructions-content h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+.instructions-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+.cancel-instructions {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: 2px solid hsla(0, 31%, 77%, 0.692);
+    border-radius: 50%;
+    padding: 3px;
+}

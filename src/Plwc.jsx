@@ -14,6 +14,7 @@ import confirmImg from "./assets/images/icon-order-confirmed.svg"
 import { useState } from "react"
 import ConfirmOrderList from "./confirmOrderList"
 import {useRef} from "react"
+import cancelImg from "./assets/images/icon-remove-item.svg"
 function Plwc(){
     const[cartItems, setCartItems] = useState([])
     const[order, setOrder] = useState(false)
@@ -23,6 +24,10 @@ function Plwc(){
     const cartRef = useRef(null)
     function scrollToCart(){
         cartRef.current?.focus()
+    }
+    function closeInstructions(){
+        const instructions = document.querySelector(".instructions")
+        instructions.style.display = "none"
     }
     const isInCart = (orderName) => {
         return cartItems.some(item => item.name === orderName)
@@ -121,7 +126,19 @@ function Plwc(){
                     </div>
                     <button className="close-confirmation" onClick={closeConfirmation}>Start New Order</button>
                 </div>
-            </Modal>
+        </Modal>
+        <div className="instructions">
+            <div className="instructions-content">
+                <div className="instructions-header">
+                    <h3>Instructions</h3>
+                    <img src={cancelImg} alt="" onClick={closeInstructions} className="cancel-instructions" tabIndex={0}  onKeyDown={closeInstructions} />
+                </div>
+                
+                <p>1. Add items to your cart by clicking the "Add to Cart" button.</p>
+                <p>2. Review your cart and make any necessary changes.</p>
+                <p>3. Click "Confirm Order" to place your order.</p>
+            </div>
+        </div>
         </>
 
         
