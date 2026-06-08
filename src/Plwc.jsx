@@ -13,11 +13,17 @@ import treeImg from "./assets/images/icon-carbon-neutral.svg"
 import confirmImg from "./assets/images/icon-order-confirmed.svg"
 import { useState } from "react"
 import ConfirmOrderList from "./confirmOrderList"
+import {useRef} from "react"
 function Plwc(){
     const[cartItems, setCartItems] = useState([])
     const[order, setOrder] = useState(false)
     const[open, setIsOpen] = useState(false)
     const totalAmount = cartItems.reduce((sum, item) => sum + item.amount, 0)
+
+    const cartRef = useRef(null)
+    function scrollToCart(){
+        cartRef.current?.focus()
+    }
     const isInCart = (orderName) => {
         return cartItems.some(item => item.name === orderName)
     }
@@ -60,7 +66,11 @@ function Plwc(){
     }    
     return(
         <>
-            <div className="app-container">
+            <div className="app-container" tabIndex={0} onKeyDown={(e) => {
+                if (e.key === "c") {
+                    scrollToCart();
+                }
+            }}>
             <div className="order-section">
                 <h1 className="order-title">Desserts</h1>
                 <div className="order-container">
@@ -75,7 +85,7 @@ function Plwc(){
                     <Order image={Image9} orderName= "Panna Cotta" description="Vanilla Panna Cotta" price= {6.50} sendData={handleAddToCart} orderStatus={isInCart("Vanilla Panna Cotta")} />
                 </div>
             </div>
-            <div className="cart-container">
+            <div className="cart-container" ref={cartRef} tabIndex={0}>
                 <h3 className="cart-title">Your Cart ({totalAmount}) </h3>
                 <CartList cartItems={cartItems} onRemoveItem={handleRemoveItem} />
                 <div className="order-summary" style={{display: cartItems.length > 0 ? "flex" : "none", flexDirection: "column", marginTop: "20px"    }}>

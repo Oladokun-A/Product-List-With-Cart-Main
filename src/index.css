@@ -127,6 +127,7 @@ body {
     font-weight: bold;
     color: hsl(14, 86%, 42%);
 }
+
 .cart-container {
     width: 350px;
     padding: 20px;
@@ -385,4 +386,21 @@ body {
     cursor: pointer;
     align-self: center;
     width: 100%;
+}
+.quantity-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: hsl(14, 86%, 42%);
+    color: white;
+    border: 1px solid hsl(14, 86%, 42%);
+    border-radius: 30px;
+    padding: 2px 10px;
+    cursor: pointer;
+    z-index: 2;
+    width: 25px;
+}
+.quantity-button:hover {
+    background-color: hsl(14, 86%, 42%);
 }

@@ -20,8 +20,12 @@ function CartList({cartItems, onRemoveItem}){
                                 <p className="cart-item-details-total">${item.total}</p>
                             </div>
                         </div>
-                        <img src={cancelImg} alt="remove order" className="remove-item" onClick={() => onRemoveItem(index)} />
-                        
+                        <button className="cancel-button" onClick={() => onRemoveItem(index)} onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === "Delete") {
+                                onRemoveItem(index);
+                            } }}>
+                            <img src={cancelImg} alt="remove order" className="quantity-icon" />
+                        </button>
                     </div>
                 ))
             )}

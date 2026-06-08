@@ -22,21 +22,57 @@ function Order(props) {
         setAmount(newAmount)
         sendData(description, newAmount, price, orderStatus, image)
     }
+    function handleKeyDown(event) {
+        switch (event.key) {
+            case "Enter":
+                if (orderStatus) {
+                    decreaseOrder();
+                }
+                break;
+            case "d":
+                if (orderStatus) {
+                    decreaseOrder();
+                }
+                break;
+            case "i":
+                if (orderStatus) {
+                    increaseOrder();
+                }
+                break;
+            case "ArrowDown":                
+                if (orderStatus) {
+                    decreaseOrder();
+                }
+                break;
+            case "ArrowUp":
+                if (orderStatus) {
+                    increaseOrder();
+                }
+                break;
+             default:
+                break;
+        }
+    }
+    
     return(
         <div>
             <div className="order">
                 <div className="order-image-container" >
                     <img src={image} alt="Order-image" className="order-image" style={{borderColor: orderStatus ? "hsl(14, 86%, 42%)" : "transparent"}} />
                     {!orderStatus?(
-                        <button className="addBut" onClick ={addToCart}>
+                        <button className="addBut" onClick ={addToCart} onKeyDown={handleKeyDown}>
                             <img src={cartImg} alt="Add to Cart" className="cart-icon" />
                             <p className="add-to-cart">Add to Cart</p>
                         </button>
                     ):(
                         <div className="quantity-container" >
-                            <img src={removeImg} alt="Remove from Cart" className="quantity-icon" onClick={decreaseOrder} />
+                            <button className="quantity-button" onKeyDown={handleKeyDown}>
+                                <img src={removeImg} alt="Remove from Cart" className="quantity-icon" onClick={decreaseOrder} />
+                            </button>
                             <p className="quantity">{amount}</p>
-                            <img src={addImg} alt="Add to Cart" className="quantity-icon" onClick={increaseOrder}/>
+                            <button className="quantity-button" onKeyDown={handleKeyDown}>
+                                <img src={addImg} alt="Add to Cart" className="quantity-icon" onClick={increaseOrder} />
+                            </button>
                         </div>
                     )}
                 </div>
